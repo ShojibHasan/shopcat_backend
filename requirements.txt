@@ -26,7 +26,7 @@ bootstrap4==0.1.0
 
 daphne==3.0.1
 day==0.0.1
-dbus-python==1.2.16
+
 
 defer==1.0.6
 defusedxml==0.6.0
