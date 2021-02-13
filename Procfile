@@ -1,0 +1,1 @@
+web: gunicorn shopcat_backend.wsgi --log-file -
