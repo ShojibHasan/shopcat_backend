@@ -3,7 +3,6 @@ alabaster==0.7.8
 altgraph==0.17
 anyascii==0.1.7
 appdirs==1.4.4
-apturl==0.5.2
 argon2-cffi==20.1.0
 arrow==0.17.0
 asgiref==3.2.10
