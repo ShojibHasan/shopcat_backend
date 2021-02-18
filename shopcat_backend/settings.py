@@ -26,7 +26,7 @@ SECRET_KEY = '1*64g+c691#0$6n-r!ec-x+g4_-cixgv@(qlh5owvylmwf(smv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shopcatbackend.herokuapp.com','127.0.0.1']
 
 
 # Application definition
