@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -98,20 +99,47 @@ SWAGGER_SETTINGS = {
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'daaepmcmkp46gd', 
-        'USER': 'bpknifqjlaoego', 
-        'PASSWORD': '1aae5675d1aac17b2e6e82af3a311559ee78d3cdcb39bae0ecb21c84bd689ea6',
-        'HOST': 'ec2-54-198-73-79.compute-1.amazonaws.com', 
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'daaepmcmkp46gd', 
+#         'USER': 'bpknifqjlaoego', 
+#         'PASSWORD': '1aae5675d1aac17b2e6e82af3a311559ee78d3cdcb39bae0ecb21c84bd689ea6',
+#         'HOST': 'ec2-54-198-73-79.compute-1.amazonaws.com', 
+#         'PORT': '5432',
+#     }
+# }
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'shopcatdb', 
+#         'USER': 'postgres', 
+#         'PASSWORD': '12345',
+#         'HOST': '127.0.0.1', 
+#         'PORT': '5432',
+#     }
+# }
+
+env = environ.Env()
+env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+
+if env.str('DATABASE_URL', default=''):
+    DATABASES = {
+        'default': env.db(),
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
