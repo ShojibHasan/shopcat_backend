@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +27,9 @@ SECRET_KEY = '1*64g+c691#0$6n-r!ec-x+g4_-cixgv@(qlh5owvylmwf(smv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['shopcatbackend.herokuapp.com','127.0.0.1']
+env = environ.Env()
+env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -125,8 +127,7 @@ SWAGGER_SETTINGS = {
 #     }
 # }
 
-env = environ.Env()
-env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
+
 
 if env.str('DATABASE_URL', default=''):
     DATABASES = {
