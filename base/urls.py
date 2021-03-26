@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/product/all',views.getProducts,name='products'),
     path('api/product/<int:pk>',views.getProduct,name='product'),
     path('',views.home,name='home'),
+    path('api/users/profile/',views.getUserProfile, name="user_profile")
 ]
