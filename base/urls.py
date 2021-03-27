@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('users/token/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('users/login/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api',views.getRoutes,name='routes'),
 
     #Product URL
@@ -15,5 +15,5 @@ urlpatterns = [
     path('api/users/profile/',views.getUserProfile, name="user_profile"),
 
     path('api/users/',views.getUsers, name="users"),
-
+    path('api/users/register/',views.registerUser, name="register"),
 ]
