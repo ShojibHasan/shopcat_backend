@@ -70,30 +70,19 @@ def getUserProfile(request):
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
-
-    user = User.objects.create(
-            first_name = data['name'],
-            username = data['email'],
-            email = data['email'],
-            password = make_password(data['password'])
-
+    try:
+        user = User.objects.create(
+            first_name=data['name'],
+            username=data['email'],
+            email=data['email'],
+            password=make_password(data['password'])
         )
-    serializer = UserSerializerWithToken(user, many= False)
-    return Response(serializer.data)
-    # try:
-    #     user = User.objects.create(
-    #         first_name = data['name'],
-    #         username = data['email'],
-    #         email = data['email'],
-    #         password = make_password(data['password'])
 
-    #     )
-    #     serializer = UserSerializerWithToken(user, many= False)
-    #     return Response(serializer.data)
-    # except:
-    #     messages = {'detail': 'User with this email already exists'}
-    #     return Response(messages, status=status.HTTP_400_BAD_REQUEST)
-
+        serializer = UserSerializerWithToken(user, many=False)
+        return Response(serializer.data)
+    except:
+        message = {'detail': 'User with this email already exists'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
@@ -104,9 +93,9 @@ def getUsers(request):
 
 
 
-def propose(request):
-    if request.data == "Turu_love":
-        return Response("accept Love Request")
-    else:
-        return propose()
+# def propose(request):
+#     if request.data == "Turu_love":
+#         return Response("accept Love Request")
+#     else:
+#         return propose()
 

@@ -37,7 +37,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 INSTALLED_APPS = [
     'rest_framework_swagger',
     'rest_framework',
-    'base',
+    
     'drf_yasg2',
     'corsheaders',
     'django.contrib.postgres',
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'base.apps.BaseConfig',
 ]
 
 REST_FRAMEWORK = {
