@@ -7,7 +7,6 @@ from drf_yasg2 import openapi
 from drf_yasg2.views import get_schema_view
 from rest_framework_swagger.views import get_swagger_view
 
-
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -33,7 +32,10 @@ swagger_url = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('base.urls')),
+    # path('',include('base.urls')),
+    path('api/products/', include('base.urls.product_urls')),
+    path('api/users/', include('base.urls.user_urls')),
+    path('api/orders/', include('base.urls.order_urls')),
 ]+swagger_url + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
                                                                                        document_root=settings.STATIC_ROOT)
 
